@@ -359,10 +359,11 @@
       .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr 1fr; }
     }
     @media (min-width: 769px) {
-      .repo-card[style*="display:none"] { display: grid !important; }
+      .repo-card--hide-mobile { display: grid !important; }
       .view-more-repos { display: none !important; }
     }
     @media (max-width: 768px) {
+      .repo-card--hide-mobile { display: none !important; }
       * { cursor: auto !important; }
       #splash-cursor { display: none; }
       .section-shell { padding: 20px 20px 0; }
@@ -386,10 +387,7 @@
       .repo-card { padding: 14px; min-height: 44px; }
       .repo-card h4 { font-size: 0.95rem; margin-bottom: 8px; }
       .repo-card p { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
-      .repo-card:nth-child(4),
-      .repo-card:nth-child(5),
-      .repo-card:nth-child(6) { display: none !important; }
-      .view-more-repos { display: inline-flex !important; }
+      .view-more-repos { display: inline-flex !important; text-align: center; width: 100%; margin-top: 12px; }
       .hero-cta, .expand-toggle, .contact-submit, .github-button, .btn-talk, .menu-toggle, .mobile-close, .contact-card { min-height: 44px; }
       .hero-cta:hover, .expand-toggle:hover, .contact-submit:hover, .github-button:hover, .repo-card:hover { transform: none; box-shadow: none; }
       .aurora, .status-dot, .project-link, .blink-cursor { animation: none !important; }
@@ -623,9 +621,9 @@
         <article class="repo-card"><h4>🤖 AMSS-v5</h4><p>Multi-strategy algo trading engine for BTC/USD Perpetuals</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
         <article class="repo-card"><h4>🧠 Adaptive-Exam-System</h4><p>AI-powered dynamic assessment with difficulty-weighted scoring</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
         <article class="repo-card"><h4>😂 MemeBot</h4><p>AI content automation pipeline using Gemini AI and Vertex AI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card" style="display:none;"><h4>📊 Trading-Indicators</h4><p>Custom EMA and volatility indicators library</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card" style="display:none;"><h4>🔗 FastAPI-Projects</h4><p>REST API backends built with FastAPI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card" style="display:none;"><h4>💡 DSA-Solutions</h4><p>200+ DSA solutions with clean implementations</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card repo-card--hide-mobile"><h4>📊 Trading-Indicators</h4><p>Custom EMA and volatility indicators library</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card repo-card--hide-mobile"><h4>🔗 FastAPI-Projects</h4><p>REST API backends built with FastAPI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card repo-card--hide-mobile"><h4>💡 DSA-Solutions</h4><p>200+ DSA solutions with clean implementations</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
       </div>
       <a class="view-more-repos" href="https://github.com/Srivardhan0615" target="_blank" rel="noreferrer">View More on GitHub</a>
     </section>
