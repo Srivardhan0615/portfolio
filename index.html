@@ -368,20 +368,38 @@
       #github .view-more-repos { display: none !important; }
       * { cursor: auto !important; }
       #splash-cursor { display: none; }
-      .section-shell { padding: 20px 20px 0; }
-      .section-label { margin-bottom: 12px; }
+      .nav-inner { min-height: 68px; padding: 0 18px; }
+      .logo { font-size: 1.28rem; }
+      .menu-toggle { font-size: 1.65rem; padding: 4px; }
+      .section-shell { padding: 18px 20px 0; }
+      .section-label { margin-bottom: 10px; font-size: 0.74rem; letter-spacing: 0.16em; }
       .section-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
       .section-subtitle, .hero-subtext, .project-description, .expanded-block p, .timeline-card p, .footer-copy { line-height: 1.6; }
       .hero-inner { padding-left: 0; }
       .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr; }
-      .hero { padding-top: calc(var(--nav-height) + 24px); }
-      .hero h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); }
-      .hero-actions { gap: 12px; margin-top: 24px; }
+      .hero { min-height: auto; padding-top: calc(var(--nav-height) + 12px); padding-bottom: 42px; }
+      .availability-badge { gap: 8px; margin-bottom: 18px; padding: 6px 12px; font-size: 0.78rem; line-height: 1.4; }
+      .hero h1 { font-size: clamp(2.5rem, 9vw, 4.2rem); }
+      .terminal-line { margin-top: 18px; font-size: 0.92rem; }
+      .hero-subtext { margin-top: 12px; font-size: 0.96rem; }
+      .hero-actions { gap: 10px; margin-top: 20px; }
       .skills-groups, .projects-list, .achievements-shell, .repo-grid, .cert-grid, .coding-grid, .contact-stack, .form-grid { gap: 12px; }
       .project-card, .timeline-card, .github-header, .coding-card, .repo-card, .cert-card, .contact-card, .contact-form, .skill-group { padding: 16px; }
+      .code-card { display: none; }
+      .stat-badge { padding: 12px 14px; }
+      .stat-value { margin-bottom: 4px; font-size: 1.2rem; }
+      .stat-label { font-size: 0.8rem; }
+      .skill-group h4 { margin-bottom: 12px; }
+      .skill-badge { width: 100%; padding: 10px 14px; }
+      .project-meta { gap: 8px; margin-bottom: 10px; font-size: 0.82rem; }
+      .project-title { font-size: 1.2rem; line-height: 1.3; }
+      .tech-chip, .project-pill, .about-tag, .stack-tags span { padding: 5px 10px; font-size: 0.78rem; }
+      .expand-toggle { margin-top: 18px; padding: 10px 16px; }
       .project-head { flex-direction: column; }
       .timeline { padding-left: 32px; }
       .timeline-node { left: -32px; }
+      .timeline-card h4 { font-size: 1.05rem; }
+      .timeline-row, .timeline-card .subtitle { font-size: 0.9rem; }
       .github-header { margin-top: 24px; padding: 20px 16px; }
       .github-name { font-size: clamp(1.3rem, 5vw, 1.6rem); }
       .github-subtitle { font-size: 0.92rem; line-height: 1.55; }
@@ -391,28 +409,41 @@
       .repo-card p { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
       .view-more-repos { display: inline-flex !important; text-align: center; width: 100%; margin-top: 12px; }
       .hero-cta, .expand-toggle, .contact-submit, .github-button, .btn-talk, .menu-toggle, .mobile-close, .contact-card { min-height: 44px; }
+      .contact-card { padding: 14px 16px; align-items: flex-start; }
+      .contact-value { font-size: 0.92rem; overflow-wrap: anywhere; }
+      .building-banner { margin-top: 56px; padding: 24px 18px; gap: 18px; }
+      footer { margin-top: 72px; padding: 0 20px 28px; }
+      .back-to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
       .hero-cta:hover, .expand-toggle:hover, .contact-submit:hover, .github-button:hover, .repo-card:hover { transform: none; box-shadow: none; }
       .aurora, .status-dot, .project-link, .blink-cursor { animation: none !important; }
       .section-reveal { opacity: 1; transform: none; transition: none; }
     }
     @media (max-width: 520px) {
-      .section-shell { padding: 20px 16px 0; }
+      .section-shell { padding: 16px 16px 0; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero-cta, .github-button, .expand-toggle { width: 100%; }
-      .stats-grid { gap: 12px; }
-      .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr; }
+      .stats-grid { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .coding-grid, .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .repo-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr; }
       .section-title { font-size: clamp(1.45rem, 7vw, 2rem); }
       .hero-subtext, .section-subtitle { font-size: 0.95rem; }
       .project-card, .timeline-card, .github-header, .coding-card, .repo-card, .cert-card, .contact-card, .contact-form, .skill-group { padding: 16px; }
+      .coding-card, .cert-card { padding: 14px; }
+      .coding-value { font-size: 1.4rem; }
+      .coding-title { font-size: 0.92rem; }
+      .cert-card { gap: 12px; }
     }
     @media (max-width: 375px) {
-      .section-shell { padding: 20px 14px 0; }
+      .section-shell { padding: 16px 14px 0; }
       .hero { padding-top: calc(var(--nav-height) + 16px); }
       .hero h1 { font-size: clamp(2.1rem, 11vw, 2.8rem); }
       .hero-subtext, .section-subtitle, .repo-card p { font-size: 0.88rem; }
       .availability-badge, .hero-cta, .github-button, .expand-toggle { font-size: 0.9rem; }
       .github-header { padding: 16px 14px; }
       .repo-card { padding: 14px; }
+      .stats-grid, .coding-grid, .cert-grid { grid-template-columns: 1fr; }
+      .skill-badge { padding: 9px 12px; }
+      .back-to-top { width: 42px; height: 42px; }
     }
     @media (pointer: coarse) {
       .project-card:hover, .repo-card:hover, .skill-badge:hover, .github-button:hover, .hero-cta:hover, .expand-toggle:hover { transform: none; box-shadow: none; }
