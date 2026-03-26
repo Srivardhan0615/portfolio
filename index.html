@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neela Srivardhan | Portfolio</title>
+  <meta name="description" content="Portfolio of Neela Srivardhan - Backend Developer, AI Systems Builder, and Fintech Enthusiast from Hyderabad, India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080810;
+      --card: #0f0f1a;
+      --card-alt: #0d0d1a;
+      --text: #e0e0e0;
+      --muted: #888888;
+      --cyan: #00d4ff;
+      --purple: #7b2fff;
+      --gradient: linear-gradient(135deg, #00d4ff, #7b2fff);
+      --border: rgba(0, 212, 255, 0.12);
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+      --max-width: 1180px;
+      --nav-height: 78px;
+    }
+    * { box-sizing: border-box; cursor: none !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(0, 212, 255, 0.06), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(123, 47, 255, 0.05), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font: inherit; }
+    #splash-cursor {
+      position: fixed;
+      inset: 0;
+      z-index: 38;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    #fluid {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      opacity: 0.95;
+      filter: saturate(1.15);
+    }
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, #00d4ff, #7b2fff); z-index: 99996; transition: width 0.1s linear;
+    }
+    @keyframes auroraOne {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-40px, 30px, 0) scale(1.08); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+    @keyframes auroraTwo {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(45px, -35px, 0) scale(1.1); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .section-reveal.visible { opacity: 1; transform: translateY(0); }
+    .section-shell { max-width: var(--max-width); margin: 0 auto; padding: 110px 24px 0; }
+    .section-label {
+      display: inline-flex; margin-bottom: 18px; font-size: 0.82rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(0, 212, 255, 0.85);
+    }
+    .section-title { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; }
+    .section-subtitle { max-width: 720px; margin: 12px 0 0; color: #a8afbf; font-size: 1rem; line-height: 1.8; }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      backdrop-filter: blur(20px); background: rgba(8, 8, 16, 0.85);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+    .nav-inner {
+      max-width: calc(var(--max-width) + 48px); margin: 0 auto; min-height: var(--nav-height);
+      padding: 0 24px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px;
+    }
+    .logo {
+      justify-self: start; font-size: 1.5rem; font-weight: 700; background: var(--gradient);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; justify-self: center; }
+    .nav-links a, .mobile-links a { color: var(--muted); transition: color 0.3s ease; }
+    .nav-links a.active, .nav-links a:hover, .mobile-links a:hover, .mobile-links a.active { color: var(--cyan); }
+    .btn-talk, .menu-toggle, .hero-cta, .expand-toggle, .contact-submit, .github-button, .back-to-top {
+      border: none; outline: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    }
+    .btn-talk {
+      justify-self: end; border: 1.5px solid var(--cyan); color: var(--cyan);
+      padding: 8px 20px; border-radius: 25px; background: transparent;
+    }
+    .btn-talk:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 24px rgba(0, 212, 255, 0.25); }
+    .menu-toggle { display: none; justify-self: end; background: transparent; color: var(--text); font-size: 1.8rem; padding: 4px 8px; }
+    .mobile-menu {
+      position: fixed; inset: 0; background: rgba(8, 8, 16, 0.97); z-index: 1002;
+      display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .mobile-menu.open { opacity: 1; visibility: visible; }
+    .mobile-close { position: absolute; top: 24px; right: 24px; background: transparent; color: var(--text); border: none; font-size: 2rem; }
+    .mobile-links { display: flex; flex-direction: column; gap: 24px; text-align: center; font-size: 1.4rem; }
+    .hero {
+      min-height: 100vh; padding: calc(var(--nav-height) + 48px) 24px 70px; position: relative;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-inner { width: 100%; max-width: var(--max-width); margin: 0 auto; padding-left: max(5vw, 40px); position: relative; z-index: 1; }
+    .aurora { position: absolute; border-radius: 999px; filter: blur(90px); opacity: 0.12; pointer-events: none; }
+    .aurora-cyan { top: 8%; right: -8%; width: 420px; height: 420px; background: #00d4ff; animation: auroraOne 18s ease-in-out infinite; }
+    .aurora-purple { bottom: -8%; left: -8%; width: 420px; height: 420px; background: #7b2fff; animation: auroraTwo 20s ease-in-out infinite; }
+    .availability-badge {
+      display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px; border-radius: 20px;
+      font-size: 0.85rem; border: 1px solid rgba(0, 212, 255, 0.3); background: rgba(0, 212, 255, 0.05); margin-bottom: 24px;
+    }
+    .availability-badge .status-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #39d98a;
+      box-shadow: 0 0 14px rgba(57, 217, 138, 0.5); animation: pulseDot 1.5s ease-in-out infinite;
+    }
+    .hero h1 { margin: 0; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.92; letter-spacing: -0.04em; }
+    .terminal-line { margin: 28px 0 0; color: var(--cyan); font-family: "JetBrains Mono", monospace; font-size: clamp(0.95rem, 2vw, 1.05rem); }
+    .blink-cursor { animation: pulseDot 0.9s step-end infinite; }
+    .hero-subtext { max-width: 640px; margin-top: 16px; color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+      padding: 0 24px; border-radius: 30px; border: 1.5px solid #444; color: var(--text); background: transparent;
+    }
+    .hero-cta.primary { background: var(--gradient); border-color: transparent; color: #fff; }
+    .hero-cta:hover, .expand-toggle:hover, .contact-submit:hover, .github-button:hover { transform: translateY(-2px); box-shadow: 0 0 24px rgba(0, 212, 255, 0.18); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 40px; max-width: 940px; }
+    .stat-badge {
+      background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 12px; padding: 14px 20px; text-align: center;
+    }
+    .stat-value {
+      display: block; margin-bottom: 6px; font-size: 1.35rem; font-weight: 700;
+      background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .stat-label { color: var(--muted); font-size: 0.88rem; }
+    .about-grid, .contact-grid, .building-banner { display: grid; gap: 60px; align-items: center; }
+    .about-grid { grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); margin-top: 38px; }
+    .about-copy h3 { margin: 0 0 18px; font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 700; }
+    .about-copy p { color: #a8afbf; line-height: 1.9; margin: 0 0 18px; }
+    .tag-row, .project-tags, .skill-badge-row, .tech-row, .stack-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .about-tag, .tech-chip, .project-pill, .stack-tags span {
+      border: 1px solid rgba(0, 212, 255, 0.3); color: var(--cyan); border-radius: 20px;
+      padding: 6px 14px; font-size: 0.85rem; background: rgba(0, 212, 255, 0.02);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .about-tag:hover, .stack-tags span:hover { background: rgba(0, 212, 255, 0.1); transform: translateY(-2px); }
+    .code-card {
+      background: var(--card-alt); border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 12px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .code-topbar {
+      display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: #161622;
+      color: rgba(224, 224, 224, 0.72); border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .window-dots { display: flex; gap: 6px; }
+    .window-dots span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .code-content {
+      margin: 0; padding: 20px; overflow-x: auto; font-family: "JetBrains Mono", monospace;
+      font-size: 0.95rem; line-height: 1.9; background: #10101b; color: #f4f7ff;
+    }
+    .skills-groups { display: grid; gap: 22px; margin-top: 40px; }
+    .skill-group {
+      padding: 24px; border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .skill-group h4 { margin: 0 0 16px; color: var(--text); font-size: 0.95rem; letter-spacing: 0.08em; }
+    .skill-badge-row { gap: 12px; }
+    .skill-badge {
+      display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; background: #0f0f1a;
+      border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .skill-main { font-weight: 600; color: #fff; }
+    .skill-sub { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(224, 224, 224, 0.62); }
+    .skill-badge:hover { transform: translateY(-2px); }
+    .glow-cyan .skill-badge { border-color: rgba(0, 212, 255, 0.3); }
+    .glow-cyan .skill-badge:hover { box-shadow: 0 0 12px rgba(0, 212, 255, 0.4); }
+    .glow-purple .skill-badge { border-color: rgba(123, 47, 255, 0.3); }
+    .glow-purple .skill-badge:hover { box-shadow: 0 0 12px rgba(123, 47, 255, 0.4); }
+    .glow-blue .skill-badge { border-color: rgba(82, 156, 255, 0.3); }
+    .glow-blue .skill-badge:hover { box-shadow: 0 0 12px rgba(82, 156, 255, 0.4); }
+    .glow-green .skill-badge { border-color: rgba(73, 209, 131, 0.3); }
+    .glow-green .skill-badge:hover { box-shadow: 0 0 12px rgba(73, 209, 131, 0.4); }
+    .glow-orange .skill-badge { border-color: rgba(255, 166, 87, 0.3); }
+    .glow-orange .skill-badge:hover { box-shadow: 0 0 12px rgba(255, 166, 87, 0.4); }
+    .glow-grey .skill-badge { border-color: rgba(168, 176, 190, 0.3); }
+    .glow-grey .skill-badge:hover { box-shadow: 0 0 12px rgba(168, 176, 190, 0.35); }
+    .glow-teal .skill-badge { border-color: rgba(55, 210, 204, 0.3); }
+    .glow-teal .skill-badge:hover { box-shadow: 0 0 12px rgba(55, 210, 204, 0.4); }
+    .projects-list { margin-top: 40px; display: grid; gap: 28px; }
+    .project-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), rgba(123, 47, 255, 0.6), transparent); }
+    .project-card {
+      position: relative; padding: 32px; border-radius: 16px;
+      background: linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(135deg, rgba(0, 212, 255, 0.65), rgba(123, 47, 255, 0.6)) border-box;
+      border: 2px solid transparent; box-shadow: var(--shadow);
+    }
+    .project-head { display: flex; align-items: start; justify-content: space-between; gap: 18px; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
+    .project-title { margin: 0; font-size: 1.55rem; }
+    .project-description, .expanded-block p { color: var(--muted); line-height: 1.8; }
+    .project-link { font-size: 1.2rem; color: var(--cyan); animation: floatUp 2.6s ease-in-out infinite; }
+    .expand-toggle {
+      display: inline-flex; margin: 22px auto 0; padding: 10px 18px; border-radius: 999px;
+      border: 1px solid rgba(0, 212, 255, 0.2); background: rgba(0, 212, 255, 0.04); color: var(--text); cursor: pointer;
+    }
+    .expand-wrap { display: flex; justify-content: center; }
+    .expanded-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .expanded-inner { padding-top: 18px; display: grid; gap: 18px; }
+    .expanded-block h5 { margin: 0 0 6px; color: var(--text); font-size: 1rem; }
+    .achievements-shell, .repo-grid, .cert-grid, .coding-grid { display: grid; gap: 18px; }
+    .coding-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 22px; }
+    .coding-card, .repo-card, .cert-card, .contact-card, .contact-form, .github-header {
+      background: var(--card); border-radius: 14px; border: 1px solid rgba(0, 212, 255, 0.1); box-shadow: var(--shadow);
+    }
+    .coding-card { padding: 28px; text-align: center; }
+    .coding-icon {
+      display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px;
+      border-radius: 50%; background: rgba(0, 212, 255, 0.08); margin-bottom: 14px; color: var(--cyan); font-size: 1.35rem;
+    }
+    .coding-value {
+      display: block; font-size: 1.8rem; font-weight: 700; background: var(--gradient);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .coding-title { font-weight: 600; margin-top: 6px; }
+    .coding-label, .minor-label, .github-subtitle, .repo-language, .contact-label, .timeline-row, .footer-copy { color: var(--muted); }
+    .minor-label {
+      margin-top: 38px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.14em;
+      font-size: 0.82rem; color: rgba(0, 212, 255, 0.82);
+    }
+    .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cert-card { padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+    .cert-icon { font-size: 1.35rem; }
+    .elite-badge {
+      margin-left: auto; padding: 6px 10px; border-radius: 999px; background: rgba(123, 47, 255, 0.14);
+      border: 1px solid rgba(123, 47, 255, 0.35); color: #c6a6ff; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .github-header { margin-top: 36px; padding: 28px; text-align: center; }
+    .github-name { margin: 0; font-size: 2rem; }
+    .github-button {
+      display: inline-flex; margin-top: 18px; padding: 12px 20px; border-radius: 999px;
+      background: rgba(0, 212, 255, 0.08); border: 1px solid rgba(0, 212, 255, 0.18); color: var(--text);
+    }
+    .repo-grid { margin-top: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .repo-card { padding: 20px; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .repo-card:hover { border-color: rgba(0, 212, 255, 0.4); transform: translateY(-3px); }
+    .repo-card h4 { margin: 0 0 10px; font-size: 1.1rem; }
+    .repo-card p { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
+    .lang-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); display: inline-block; margin-right: 8px; }
+    .timeline { position: relative; margin-top: 36px; padding-left: 40px; display: grid; gap: 28px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, #00d4ff, #7b2fff);
+    }
+    .timeline-item { position: relative; }
+    .timeline-node {
+      position: absolute; left: -40px; top: 20px; width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid rgba(0, 212, 255, 0.45); background: var(--bg); display: grid; place-items: center; font-size: 0.8rem;
+    }
+    .timeline-node.filled { background: var(--cyan); border-color: var(--cyan); color: var(--bg); }
+    .timeline-card {
+      background: var(--card); border: 1px solid rgba(0, 212, 255, 0.1);
+      border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow);
+    }
+    .timeline-card h4 { margin: 0 0 10px; font-size: 1.2rem; }
+    .timeline-card .subtitle { color: var(--cyan); margin-bottom: 12px; font-weight: 500; }
+    .current-badge, .active-badge, .success-message {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; font-size: 0.85rem;
+    }
+    .current-badge, .active-badge {
+      border: 1px solid rgba(57, 217, 138, 0.35); color: #62e5a0; background: rgba(57, 217, 138, 0.08);
+    }
+    .building-banner {
+      grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.7fr); margin-top: 110px; padding: 40px;
+      border-radius: 16px; background: linear-gradient(135deg, rgba(12, 26, 40, 0.96), rgba(28, 18, 52, 0.96)) padding-box, linear-gradient(135deg, rgba(0, 212, 255, 0.75), rgba(123, 47, 255, 0.75)) border-box;
+      border: 2px solid transparent;
+    }
+    .building-label {
+      margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.82rem; color: rgba(139, 222, 255, 0.95);
+    }
+    .building-banner h3 { margin: 0; font-size: 2rem; }
+    .building-banner p { color: rgba(232, 238, 255, 0.82); line-height: 1.8; margin: 14px 0 20px; }
+    .contact-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); margin-top: 40px; }
+    .contact-stack { display: grid; gap: 14px; }
+    .contact-card { padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center;
+      justify-content: center; background: rgba(0, 212, 255, 0.08); color: var(--cyan); flex: 0 0 auto;
+    }
+    .contact-value { color: var(--text); }
+    .contact-form { padding: 24px; }
+    .form-grid { display: grid; gap: 16px; }
+    .form-row { display: grid; gap: 8px; }
+    .form-row label { color: var(--muted); font-size: 0.92rem; }
+    .form-row input, .form-row textarea {
+      width: 100%; padding: 14px 16px; border-radius: 10px; background: #0f0f1a;
+      border: 1px solid rgba(0, 212, 255, 0.2); color: var(--text); resize: vertical;
+    }
+    .form-row input:focus, .form-row textarea:focus {
+      border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1); outline: none;
+    }
+    .contact-submit { width: 100%; padding: 16px; border-radius: 10px; color: #fff; background: var(--gradient); font-weight: 600; }
+    .success-message {
+      display: none; margin-top: 16px; border: 1px solid rgba(57, 217, 138, 0.4);
+      color: #7cf0b2; background: rgba(57, 217, 138, 0.08); border-radius: 12px; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .success-message.show { display: inline-flex; opacity: 1; }
+    footer { max-width: var(--max-width); margin: 110px auto 0; padding: 0 24px 40px; text-align: center; }
+    .footer-line { height: 1px; background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), rgba(123, 47, 255, 0.6), transparent); margin-bottom: 32px; }
+    .footer-title { margin: 0; font-size: 1rem; font-weight: 500; }
+    .footer-copy { margin: 10px 0 20px; line-height: 1.8; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; color: var(--muted); }
+    .footer-links a:hover { color: var(--cyan); }
+    .back-to-top {
+      position: fixed; right: 24px; bottom: 24px; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient); color: #fff; display: grid; place-items: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); opacity: 0; visibility: hidden; z-index: 990;
+    }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    @media (max-width: 980px) {
+      .nav-inner { grid-template-columns: 1fr auto auto; }
+      .nav-links, .btn-talk { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      * { cursor: auto !important; }
+      #splash-cursor { display: none; }
+      .hero-inner { padding-left: 0; }
+      .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr; }
+      .hero { padding-top: calc(var(--nav-height) + 24px); }
+      .project-card { padding: 24px; }
+      .project-head { flex-direction: column; }
+      .timeline { padding-left: 32px; }
+      .timeline-node { left: -32px; }
+    }
+    @media (max-width: 520px) {
+      .section-shell { padding-top: 96px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-cta, .github-button, .expand-toggle { width: 100%; }
+      .stats-grid { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress"></div>
+  <div id="splash-cursor"><canvas id="fluid"></canvas></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">NS.</a>
+      <div class="nav-links">
+        <a href="#about" data-section="about">About</a>
+        <a href="#skills" data-section="skills">Skills</a>
+        <a href="#projects" data-section="projects">Projects</a>
+        <a href="#achievements" data-section="achievements">Achievements</a>
+        <a href="#education" data-section="education">Education</a>
+        <a href="#contact" data-section="contact">Contact</a>
+      </div>
+      <a href="#contact" class="btn-talk">Let's Talk</a>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" aria-label="Close menu">✕</button>
+    <div class="mobile-links">
+      <a href="#about" data-section="about">About</a>
+      <a href="#skills" data-section="skills">Skills</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#achievements" data-section="achievements">Achievements</a>
+      <a href="#education" data-section="education">Education</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero section-reveal visible" id="hero">
+      <div class="aurora aurora-cyan"></div>
+      <div class="aurora aurora-purple"></div>
+      <div class="hero-inner">
+        <span class="availability-badge"><span class="status-dot"></span>🟢 Open to Internships · Hyderabad, India</span>
+        <h1>Neela<br><span class="gradient-text">Srivardhan</span></h1>
+        <p class="terminal-line">~/srivardhan $ <span id="typewriter"></span><span class="blink-cursor">█</span></p>
+        <p class="hero-subtext">Engineering intelligent, scalable systems with precision and purpose.</p>
+        <div class="hero-actions">
+          <a class="hero-cta primary" href="#projects">⚡ View Projects</a>
+          <a class="hero-cta" href="#contact">📬 Get In Touch</a>
+          <a class="hero-cta" href="One_Money_Resume (3).pdf" download="One_Money_Resume (3).pdf">↓ Resume</a>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-badge"><span class="stat-value">200+</span><span class="stat-label">Problems Solved</span></div>
+          <div class="stat-badge"><span class="stat-value">3</span><span class="stat-label">Major Projects</span></div>
+          <div class="stat-badge"><span class="stat-value">8.33</span><span class="stat-label">CGPA</span></div>
+          <div class="stat-badge"><span class="stat-value">4</span><span class="stat-label">Certifications</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="about">
+      <span class="section-label">01. ABOUT ME</span>
+      <div class="about-grid">
+        <div class="about-copy">
+          <h3 class="gradient-text">Building with intent &amp; precision</h3>
+          <p>I'm a Computer Science Engineering student at IARE, Hyderabad (GPA 8.33), specializing in AI &amp; ML. I'm passionate about building data-driven backend systems, algorithmic trading engines, and intelligent automation tools.</p>
+          <p>My foundation is Python and DSA, applied across fintech systems and AI-powered platforms. I believe in clean architecture, purposeful engineering, and writing code that performs at scale.</p>
+          <div class="tag-row">
+            <span class="about-tag">Backend Architecture</span>
+            <span class="about-tag">Fintech Systems</span>
+            <span class="about-tag">AI Integration</span>
+            <span class="about-tag">Clean Code</span>
+            <span class="about-tag">System Design</span>
+            <span class="about-tag">Algo Trading</span>
+          </div>
+        </div>
+        <div class="code-card">
+          <div class="code-topbar">
+            <div class="window-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </div>
+            <span>profile.ts</span>
+          </div>
+          <pre class="code-content"><span style="color:#6272a4">// profile.ts</span>
+<span style="color:#ff79c6">const</span> <span style="color:#f8f8f2">srivardhan</span> <span style="color:#f8f8f2">= {</span>
+  <span style="color:#8be9fd">name</span><span style="color:#f8f8f2">:</span> <span style="color:#f1fa8c">"Neela Srivardhan"</span><span style="color:#f8f8f2">,</span>
+  <span style="color:#8be9fd">gpa</span><span style="color:#f8f8f2">:</span> <span style="color:#bd93f9">8.33</span><span style="color:#f8f8f2">,</span>
+  <span style="color:#8be9fd">college</span><span style="color:#f8f8f2">:</span> <span style="color:#f1fa8c">"IARE Hyderabad"</span><span style="color:#f8f8f2">,</span>
+  <span style="color:#8be9fd">focus</span><span style="color:#f8f8f2">: [</span><span style="color:#f1fa8c">"Python"</span><span style="color:#f8f8f2">, </span><span style="color:#f1fa8c">"Backend"</span><span style="color:#f8f8f2">, </span><span style="color:#f1fa8c">"AI/ML"</span><span style="color:#f8f8f2">, </span><span style="color:#f1fa8c">"FinTech"</span><span style="color:#f8f8f2">],</span>
+  <span style="color:#50fa7b">currentlyBuilding</span><span style="color:#f8f8f2">() {</span>
+    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">"AMSS v5.0 — Algo Trading System"</span><span style="color:#f8f8f2">;</span>
+  <span style="color:#f8f8f2">},</span>
+  <span style="color:#8be9fd">available</span><span style="color:#f8f8f2">:</span> <span style="color:#bd93f9">true</span><span style="color:#f8f8f2">,</span>
+<span style="color:#f8f8f2">};</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="skills">
+      <span class="section-label">02. TECHNICAL ARSENAL</span>
+      <h2 class="section-title gradient-text">Skills &amp; Technologies</h2>
+      <p class="section-subtitle">The tools and technologies I use to engineer solutions</p>
+      <div class="skills-groups">
+        <div class="skill-group glow-cyan"><h4>CORE ENGINEERING</h4><div class="skill-badge-row"><div class="skill-badge"><span>🐍</span><div><div class="skill-main">Python</div><div class="skill-sub">CORE</div></div></div><div class="skill-badge"><span>☕</span><div><div class="skill-main">Java</div><div class="skill-sub">LANGUAGE</div></div></div><div class="skill-badge"><span>🧠</span><div><div class="skill-main">DSA</div><div class="skill-sub">ALGORITHMS</div></div></div><div class="skill-badge"><span>🏗️</span><div><div class="skill-main">OOP</div><div class="skill-sub">DESIGN</div></div></div><div class="skill-badge"><span>⚙️</span><div><div class="skill-main">System Design</div><div class="skill-sub">BASICS</div></div></div></div></div>
+        <div class="skill-group glow-purple"><h4>AI &amp; ML</h4><div class="skill-badge-row"><div class="skill-badge"><span>🤖</span><div><div class="skill-main">LLMs</div><div class="skill-sub">AI</div></div></div><div class="skill-badge"><span>✍️</span><div><div class="skill-main">Prompt Engineering</div><div class="skill-sub">CRAFT</div></div></div><div class="skill-badge"><span>🌐</span><div><div class="skill-main">Gemini AI</div><div class="skill-sub">GOOGLE</div></div></div><div class="skill-badge"><span>☁️</span><div><div class="skill-main">Vertex AI</div><div class="skill-sub">CLOUD</div></div></div><div class="skill-badge"><span>📊</span><div><div class="skill-main">ML Integration</div><div class="skill-sub">DATA</div></div></div></div></div>
+        <div class="skill-group glow-blue"><h4>BACKEND &amp; WEB</h4><div class="skill-badge-row"><div class="skill-badge"><span>⚡</span><div><div class="skill-main">FastAPI</div><div class="skill-sub">FRAMEWORK</div></div></div><div class="skill-badge"><span>🔌</span><div><div class="skill-main">REST APIs</div><div class="skill-sub">INTEGRATION</div></div></div><div class="skill-badge"><span>🌐</span><div><div class="skill-main">HTML/CSS/Bootstrap</div><div class="skill-sub">FRONTEND</div></div></div></div></div>
+        <div class="skill-group glow-green"><h4>DATA &amp; LIBRARIES</h4><div class="skill-badge-row"><div class="skill-badge"><span>📦</span><div><div class="skill-main">NumPy</div><div class="skill-sub">COMPUTE</div></div></div><div class="skill-badge"><span>🐼</span><div><div class="skill-main">Pandas</div><div class="skill-sub">ANALYSIS</div></div></div><div class="skill-badge"><span>📈</span><div><div class="skill-main">Matplotlib</div><div class="skill-sub">VISUALIZATION</div></div></div></div></div>
+        <div class="skill-group glow-orange"><h4>DATABASES</h4><div class="skill-badge-row"><div class="skill-badge"><span>🗄️</span><div><div class="skill-main">MySQL</div><div class="skill-sub">RELATIONAL</div></div></div><div class="skill-badge"><span>🏛️</span><div><div class="skill-main">Oracle SQL</div><div class="skill-sub">ENTERPRISE</div></div></div></div></div>
+        <div class="skill-group glow-grey"><h4>TOOLS &amp; PLATFORMS</h4><div class="skill-badge-row"><div class="skill-badge"><span>🔀</span><div><div class="skill-main">Git</div><div class="skill-sub">VERSION CTRL</div></div></div><div class="skill-badge"><span>🐙</span><div><div class="skill-main">GitHub</div><div class="skill-sub">COLLABORATION</div></div></div><div class="skill-badge"><span>💻</span><div><div class="skill-main">VS Code</div><div class="skill-sub">IDE</div></div></div><div class="skill-badge"><span>📮</span><div><div class="skill-main">Postman</div><div class="skill-sub">API TESTING</div></div></div></div></div>
+        <div class="skill-group glow-teal"><h4>CORE CS</h4><div class="skill-badge-row"><div class="skill-badge"><span>💽</span><div><div class="skill-main">Operating Systems</div><div class="skill-sub">SYSTEMS</div></div></div><div class="skill-badge"><span>🌐</span><div><div class="skill-main">Computer Networks</div><div class="skill-sub">NETWORKING</div></div></div><div class="skill-badge"><span>🗃️</span><div><div class="skill-main">DBMS</div><div class="skill-sub">DATABASES</div></div></div></div></div>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="projects">
+      <span class="section-label">03. CASE STUDIES</span>
+      <h2 class="section-title gradient-text">Projects</h2>
+      <p class="section-subtitle">Real problems. Thoughtful architecture. Measurable outcomes.</p>
+      <div class="projects-list">
+        <article class="project-card" data-expanded="false">
+          <div class="project-head">
+            <div>
+              <div class="project-meta"><span>01</span><span class="project-pill">⭐ Featured</span><span class="project-pill">Python</span><span class="project-pill">Pandas</span><span class="project-pill">Trading APIs</span></div>
+              <h3 class="project-title">Algorithmic Market Strategy System (AMSS v5.0)</h3>
+            </div>
+            <a class="project-link" href="#github" aria-label="View project in GitHub section">↗</a>
+          </div>
+          <p class="project-description">A multi-strategy algorithmic trading engine for BTC/USD Perpetual contracts. Integrates trend-following, breakout detection, and market regime classification with a full risk management stack.</p>
+          <div class="tech-row"><span class="tech-chip">Python</span><span class="tech-chip">Pandas</span><span class="tech-chip">EMA Indicators</span><span class="tech-chip">Risk Engine</span><span class="tech-chip">Perpetual Contracts</span><span class="tech-chip">Delta Exchange</span></div>
+          <div class="expanded-content"><div class="expanded-inner">
+            <div class="expanded-block"><h5>→ Problem Statement:</h5><p>Manual trading and static strategies fail in volatile crypto markets. A dynamic, data-driven system was needed to handle regime shifts automatically.</p></div>
+            <div class="expanded-block"><h5>→ Architecture Overview:</h5><p>Multi-module pipeline: Market Regime Detection → Signal Generation → Execution Logic → Risk Management Stack. Fully automated end-to-end.</p></div>
+            <div class="expanded-block"><h5>→ Market Regime Detection:</h5><p>Uses EMA crossovers and volatility indicators to classify market conditions in real-time and switch between active strategy modules accordingly.</p></div>
+            <div class="expanded-block"><h5>→ Risk Management Stack:</h5><p>Net-delta control, dynamic position sizing, drawdown limits, and emergency exit logic ensure capital protection during adverse conditions.</p></div>
+            <div class="expanded-block"><h5>→ Performance:</h5><p>30-day paper trading simulation completed. System adapts strategy in real-time based on live regime classification.</p></div>
+          </div></div>
+          <div class="expand-wrap"><button class="expand-toggle">Click to expand ↓</button></div>
+        </article>
+        <div class="project-divider"></div>
+        <article class="project-card" data-expanded="false">
+          <div class="project-head">
+            <div>
+              <div class="project-meta"><span>02</span><span class="project-pill">Python</span><span class="project-pill">FastAPI</span><span class="project-pill">AI Integration</span></div>
+              <h3 class="project-title">Adaptive Learning &amp; Examination System</h3>
+            </div>
+          </div>
+          <p class="project-description">An AI-powered assessment platform that dynamically adjusts question difficulty based on student responses — inspired by NTA's adaptive examination models.</p>
+          <div class="tech-row"><span class="tech-chip">Python</span><span class="tech-chip">FastAPI</span><span class="tech-chip">AI Integration</span><span class="tech-chip">Adaptive Algorithms</span><span class="tech-chip">Data Analysis</span></div>
+          <div class="expanded-content"><div class="expanded-inner">
+            <div class="expanded-block"><h5>→ Problem Statement:</h5><p>Static exams fail to accurately measure student ability across varying skill levels. A personalized, adaptive model was needed.</p></div>
+            <div class="expanded-block"><h5>→ AI Engine:</h5><p>Adjusts question difficulty in real-time using continuous feedback loops. Difficulty-weighted scoring ensures fair evaluation across all topics.</p></div>
+            <div class="expanded-block"><h5>→ Evaluation Pipeline:</h5><p>FastAPI backend handles real-time evaluation, performance analytics, and adaptive decision-making per student session.</p></div>
+          </div></div>
+          <div class="expand-wrap"><button class="expand-toggle">Click to expand ↓</button></div>
+        </article>
+        <div class="project-divider"></div>
+        <article class="project-card" data-expanded="false">
+          <div class="project-head">
+            <div>
+              <div class="project-meta"><span>03</span><span class="project-pill">Python</span><span class="project-pill">Gemini AI</span><span class="project-pill">Vertex AI</span></div>
+              <h3 class="project-title">MemeBot — AI Content Automation System</h3>
+            </div>
+          </div>
+          <p class="project-description">End-to-end AI content pipeline that fetches trending topics from YouTube and Instagram, generates context-aware memes using Gemini and Vertex AI, and auto-publishes them to Instagram.</p>
+          <div class="tech-row"><span class="tech-chip">Python</span><span class="tech-chip">Gemini AI</span><span class="tech-chip">Vertex AI</span><span class="tech-chip">Instagram API</span><span class="tech-chip">YouTube API</span><span class="tech-chip">Automation</span></div>
+          <div class="expanded-content"><div class="expanded-inner">
+            <div class="expanded-block"><h5>→ System Design:</h5><p>Modular pipeline: Trend Extraction → Content Analysis → Meme Generation → Image Rendering → Auto-Publish to Instagram.</p></div>
+            <div class="expanded-block"><h5>→ AI Layer:</h5><p>Gemini AI handles context understanding and creative generation. Vertex AI powers the image rendering and processing pipeline.</p></div>
+            <div class="expanded-block"><h5>→ Automation:</h5><p>Fully automated from trend detection to Instagram publishing. Zero manual effort required once deployed.</p></div>
+          </div></div>
+          <div class="expand-wrap"><button class="expand-toggle">Click to expand ↓</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="achievements">
+      <span class="section-label">04. RECOGNITION</span>
+      <h2 class="section-title gradient-text">Milestones</h2>
+      <p class="section-subtitle">Certifications, coding milestones, and recognition</p>
+      <p class="minor-label">CODING PLATFORMS</p>
+      <div class="coding-grid">
+        <div class="coding-card"><div class="coding-icon">&lt;&gt;</div><span class="coding-value">120+</span><div class="coding-title">LeetCode</div><div class="coding-label">Problems</div></div>
+        <div class="coding-card"><div class="coding-icon">&gt;_</div><span class="coding-value">75+</span><div class="coding-title">GeeksforGeeks</div><div class="coding-label">Problems</div></div>
+        <div class="coding-card"><div class="coding-icon">📄</div><span class="coding-value">30+</span><div class="coding-title">HackerRank</div><div class="coding-label">Problems</div></div>
+        <div class="coding-card"><div class="coding-icon">🏅</div><span class="coding-value">10+</span><div class="coding-title">CodeChef</div><div class="coding-label">Problems</div></div>
+      </div>
+      <p class="minor-label">CERTIFICATIONS</p>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-icon">🏅</div><div><div class="coding-title">Graph Theory</div><div class="coding-label">NPTEL</div></div><span class="elite-badge">Elite</span></div>
+        <div class="cert-card"><div class="cert-icon">🏅</div><div><div class="coding-title">Problem Solving Through Programming</div><div class="coding-label">NPTEL</div></div></div>
+        <div class="cert-card"><div class="cert-icon">🎓</div><div><div class="coding-title">Machine Learning Workshop</div><div class="coding-label">IIT Hyderabad</div></div></div>
+        <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="coding-title">Google Solution Challenge</div><div class="coding-label">GDG Participant</div></div></div>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="github">
+      <span class="section-label">05. OPEN SOURCE</span>
+      <h2 class="section-title gradient-text">GitHub Activity</h2>
+      <div class="github-header">
+        <h3 class="github-name">srivardhan</h3>
+        <p class="github-subtitle">Backend &amp; AI Developer · Hyderabad, India</p>
+        <a class="github-button" href="https://github.com/srivardhan" target="_blank" rel="noreferrer">🐙 View GitHub Profile ↗</a>
+      </div>
+      <div class="repo-grid">
+        <article class="repo-card"><h4>🤖 AMSS-v5</h4><p>Multi-strategy algo trading engine for BTC/USD Perpetuals</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card"><h4>🧠 Adaptive-Exam-System</h4><p>AI-powered dynamic assessment with difficulty-weighted scoring</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card"><h4>😂 MemeBot</h4><p>AI content automation pipeline using Gemini AI and Vertex AI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card"><h4>📊 Trading-Indicators</h4><p>Custom EMA and volatility indicators library</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card"><h4>🔗 FastAPI-Projects</h4><p>REST API backends built with FastAPI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card"><h4>💡 DSA-Solutions</h4><p>200+ DSA solutions with clean implementations</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="education">
+      <span class="section-label">06. EDUCATION</span>
+      <h2 class="section-title gradient-text">Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-node filled">🎓</div>
+          <div class="timeline-card">
+            <h4>Institute of Aeronautical Engineering (IARE), Hyderabad</h4>
+            <div class="subtitle">B.Tech in Computer Science (AI &amp; ML)</div>
+            <div class="timeline-row">CGPA: 8.33 | Expected 2028 | <span class="current-badge">Current</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-card">
+            <h4>Narayana Junior College, Hyderabad</h4>
+            <div class="subtitle">Intermediate Education (Class XII)</div>
+            <div class="timeline-row">CGPA: 9.77 | 2022 – 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="building-banner section-reveal visible">
+        <div>
+          <p class="building-label">🔧 CURRENTLY BUILDING</p>
+          <h3 class="gradient-text">AMSS v5.0</h3>
+          <p>Adaptive Market Strategy System — A multi-module algorithmic trading engine for BTC/USD Perpetual contracts on Delta Exchange India. Integrating advanced regime detection, multi-layer risk management, and automated signal execution.</p>
+          <span class="active-badge">🟢 Active Development</span>
+        </div>
+        <div class="stack-tags">
+          <span>Python</span>
+          <span>Pandas</span>
+          <span>Delta Exchange API</span>
+          <span>Risk Engine</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-reveal" id="contact">
+      <span class="section-label">07. CONTACT</span>
+      <h2 class="section-title gradient-text">Let's Connect</h2>
+      <p class="section-subtitle">Open to great opportunities.</p>
+      <p class="section-subtitle">Whether it's an internship, project collaboration, or a conversation about technology — I'd love to hear from you.</p>
+      <div class="contact-grid">
+        <div class="contact-stack">
+          <a class="contact-card" href="mailto:srivardhanneela@gmail.com"><span class="contact-icon">✉️</span><div><div class="contact-label">Email</div><div class="contact-value">srivardhanneela@gmail.com</div></div></a>
+          <a class="contact-card" href="tel:+917780380789"><span class="contact-icon">📱</span><div><div class="contact-label">Phone</div><div class="contact-value">+91-7780380789</div></div></a>
+          <a class="contact-card" href="https://www.linkedin.com/in/srivardhan-neela-a322b1322/" target="_blank" rel="noreferrer"><span class="contact-icon">💼</span><div><div class="contact-label">LinkedIn</div><div class="contact-value">/in/srivardhan-neela-a322b1322/</div></div></a>
+          <a class="contact-card" href="https://github.com/srivardhan" target="_blank" rel="noreferrer"><span class="contact-icon">🐙</span><div><div class="contact-label">GitHub</div><div class="contact-value">srivardhan</div></div></a>
+          <div class="contact-card"><span class="contact-icon">📍</span><div><div class="contact-label">Location</div><div class="contact-value">Hyderabad, India</div></div></div>
+        </div>
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkopgwgq" method="POST">
+          <input type="hidden" name="_subject" value="New Portfolio Contact from Website">
+          <div class="form-grid">
+            <div class="form-row"><label for="name">Name*</label><input id="name" name="name" type="text" required></div>
+            <div class="form-row"><label for="email">Email*</label><input id="email" name="email" type="email" required></div>
+            <div class="form-row"><label for="subject">Subject</label><input id="subject" name="subject" type="text"></div>
+            <div class="form-row"><label for="message">Message*</label><textarea id="message" name="message" rows="5" required></textarea></div>
+            <button class="contact-submit" type="submit">Send Message ↗</button>
+          </div>
+        </form>
+        <div id="success-message" style="display:none; margin-top:16px; padding:16px; border:1px solid #28c840; border-radius:10px; color:#28c840; text-align:center;">
+          ✅ Message sent! I'll get back to you soon.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-line"></div>
+    <p class="footer-title">Designed &amp; built by Neela Srivardhan · Hyderabad, India · 2025</p>
+    <p class="footer-copy">Engineering intelligent systems with precision and purpose.</p>
+    <div class="footer-links">
+      <a href="https://github.com/srivardhan" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/srivardhan-neela-a322b1322/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="mailto:srivardhanneela@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <script>
+    function initSplashCursor() {
+      try {
+        return initSplashCursorExact();
+      } catch (error) {
+        console.error('Splash cursor failed to initialize.', error);
+      }
+      const canvas = document.getElementById('fluid');
+      const wrapper = document.getElementById('splash-cursor');
+      if (!canvas || !wrapper || window.innerWidth <= 768) {
+        return;
+      }
+
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) {
+        return;
+      }
+
+      const particles = [];
+      const ripples = [];
+      const pointer = {
+        x: window.innerWidth * 0.5,
+        y: window.innerHeight * 0.5,
+        px: window.innerWidth * 0.5,
+        py: window.innerHeight * 0.5,
+        active: false,
+        hue: 195
+      };
+
+      let rafId = null;
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+
+      function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function makeColor(alpha = 1) {
+        const hue = pointer.hue;
+        return {
+          glow: `hsla(${hue}, 100%, 60%, ${alpha})`,
+          core: `hsla(${hue + 25}, 100%, 68%, ${alpha})`
+        };
+      }
+
+      function spawnTrail(x, y, dx, dy, intensity) {
+        const count = clamp(Math.floor(intensity * 0.18), 2, 10);
+        for (let i = 0; i < count; i += 1) {
+          const spread = Math.random() * 18 + 8;
+          particles.push({
+            x,
+            y,
+            vx: dx * 0.14 + (Math.random() - 0.5) * spread,
+            vy: dy * 0.14 + (Math.random() - 0.5) * spread,
+            radius: Math.random() * 14 + 8,
+            life: 1,
+            decay: Math.random() * 0.018 + 0.02,
+            hue: pointer.hue + (Math.random() * 18 - 9)
+          });
+        }
+      }
+
+      function spawnBurst(x, y, force) {
+        const burst = clamp(Math.floor(force / 180), 12, 22);
+        ripples.push({ x, y, radius: 14, life: 0.9, hue: pointer.hue });
+        for (let i = 0; i < burst; i += 1) {
+          const angle = (Math.PI * 2 * i) / burst + Math.random() * 0.4;
+          const speed = Math.random() * force * 0.012 + 3;
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            radius: Math.random() * 18 + 10,
+            life: 1,
+            decay: Math.random() * 0.014 + 0.014,
+            hue: pointer.hue + (Math.random() * 24 - 12)
+          });
+        }
+      }
+
+      function drawParticle(p) {
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2.4);
+        gradient.addColorStop(0, `hsla(${p.hue}, 100%, 70%, ${p.life * 0.28})`);
+        gradient.addColorStop(0.45, `hsla(${p.hue + 18}, 100%, 62%, ${p.life * 0.16})`);
+        gradient.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function drawRipple(r) {
+        ctx.strokeStyle = `hsla(${r.hue}, 100%, 70%, ${r.life * 0.22})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(8, 8, 16, 0.035)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'lighter';
+
+        for (let i = particles.length - 1; i >= 0; i -= 1) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.97;
+          p.vy *= 0.97;
+          p.radius *= 0.992;
+          p.life -= p.decay;
+          drawParticle(p);
+          if (p.life <= 0.03 || p.radius <= 1.5) {
+            particles.splice(i, 1);
+          }
+        }
+
+        for (let i = ripples.length - 1; i >= 0; i -= 1) {
+          const r = ripples[i];
+          r.radius += 2.8;
+          r.life *= 0.95;
+          drawRipple(r);
+          if (r.life <= 0.06) {
+            ripples.splice(i, 1);
+          }
+        }
+
+        if (pointer.active) {
+          const core = makeColor(0.22);
+          const cursorGlow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 54);
+          cursorGlow.addColorStop(0, core.core);
+          cursorGlow.addColorStop(0.4, `hsla(${pointer.hue}, 100%, 62%, 0.1)`);
+          cursorGlow.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
+          ctx.fillStyle = cursorGlow;
+          ctx.beginPath();
+          ctx.arc(pointer.x, pointer.y, 54, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.globalCompositeOperation = 'source-over';
+        rafId = requestAnimationFrame(animate);
+      }
+
+      function handleMove(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+        const dx = x - pointer.x;
+        const dy = y - pointer.y;
+        const speed = Math.hypot(dx, dy);
+        pointer.px = pointer.x;
+        pointer.py = pointer.y;
+        pointer.x = x;
+        pointer.y = y;
+        pointer.active = true;
+        pointer.hue = 190 + Math.sin(Date.now() * 0.0025) * 24;
+        spawnTrail(x, y, dx, dy, speed);
+        if (speed > 28) {
+          ripples.push({ x, y, radius: 10, life: 0.45, hue: pointer.hue });
+        }
+      }
+
+      function handleLeave() {
+        pointer.active = false;
+      }
+
+      function handleClick(event) {
+        spawnBurst(event.clientX, event.clientY, 900);
+      }
+
+      function handleTouchMove(event) {
+        const touch = event.touches[0];
+        if (!touch) {
+          return;
+        }
+        handleMove(touch);
+      }
+
+      function handleTouchStart(event) {
+        const touch = event.touches[0];
+        if (!touch) {
+          return;
+        }
+        handleMove(touch);
+        spawnBurst(touch.clientX, touch.clientY, 640);
+      }
+
+      resizeCanvas();
+      animate();
+
+      window.addEventListener('resize', resizeCanvas);
+      window.addEventListener('mousemove', handleMove, { passive: true });
+      window.addEventListener('mouseleave', handleLeave);
+      window.addEventListener('mousedown', handleClick);
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+      wrapper.dataset.ready = 'true';
+      return () => {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+        window.removeEventListener('resize', resizeCanvas);
+        window.removeEventListener('mousemove', handleMove);
+        window.removeEventListener('mouseleave', handleLeave);
+        window.removeEventListener('mousedown', handleClick);
+        window.removeEventListener('touchstart', handleTouchStart);
+        window.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+
+    function initSplashCursorExact() {
+      const canvas = document.getElementById('fluid');
+      const wrapper = document.getElementById('splash-cursor');
+      if (!canvas || !wrapper || window.innerWidth <= 768) return;
+
+      const config = {
+        SIM_RESOLUTION: 128,
+        DYE_RESOLUTION: 1440,
+        CAPTURE_RESOLUTION: 512,
+        DENSITY_DISSIPATION: 3.5,
+        VELOCITY_DISSIPATION: 2,
+        PRESSURE: 0.1,
+        PRESSURE_ITERATIONS: 20,
+        CURL: 3,
+        SPLAT_RADIUS: 0.2,
+        SPLAT_FORCE: 6000,
+        SHADING: true,
+        COLOR_UPDATE_SPEED: 10,
+        PAUSED: false,
+        BACK_COLOR: { r: 0.5, g: 0, b: 0 },
+        TRANSPARENT: true
+      };
+
+      function pointerPrototype() {
+        this.id = -1;
+        this.texcoordX = 0;
+        this.texcoordY = 0;
+        this.prevTexcoordX = 0;
+        this.prevTexcoordY = 0;
+        this.deltaX = 0;
+        this.deltaY = 0;
+        this.down = false;
+        this.moved = false;
+        this.color = [0, 0, 0];
+      }
+
+      const pointers = [new pointerPrototype()];
+      let animationFrameId = null;
+      let isActive = true;
+
+      const { gl, ext } = getWebGLContext(canvas);
+      if (!gl || !ext || !ext.formatRGBA || !ext.formatRG || !ext.formatR) {
+        wrapper.style.display = 'none';
+        return;
+      }
+
+      if (!ext.supportLinearFiltering) {
+        config.DYE_RESOLUTION = 256;
+        config.SHADING = false;
+      }
+
+      function getWebGLContext(targetCanvas) {
+        const params = {
+          alpha: true,
+          depth: false,
+          stencil: false,
+          antialias: false,
+          preserveDrawingBuffer: false
+        };
+        let context = targetCanvas.getContext('webgl2', params);
+        const isWebGL2 = !!context;
+        if (!isWebGL2) {
+          context = targetCanvas.getContext('webgl', params) || targetCanvas.getContext('experimental-webgl', params);
+        }
+        if (!context) return { gl: null, ext: null };
+
+        let halfFloat;
+        let supportLinearFiltering;
+        if (isWebGL2) {
+          context.getExtension('EXT_color_buffer_float');
+          supportLinearFiltering = context.getExtension('OES_texture_float_linear');
+        } else {
+          halfFloat = context.getExtension('OES_texture_half_float');
+          supportLinearFiltering = context.getExtension('OES_texture_half_float_linear');
+        }
+
+        context.clearColor(0.0, 0.0, 0.0, 1.0);
+
+        const halfFloatTexType = isWebGL2 ? context.HALF_FLOAT : halfFloat && halfFloat.HALF_FLOAT_OES;
+        let formatRGBA;
+        let formatRG;
+        let formatR;
+
+        if (isWebGL2) {
+          formatRGBA = getSupportedFormat(context, context.RGBA16F, context.RGBA, halfFloatTexType);
+          formatRG = getSupportedFormat(context, context.RG16F, context.RG, halfFloatTexType);
+          formatR = getSupportedFormat(context, context.R16F, context.RED, halfFloatTexType);
+        } else {
+          formatRGBA = getSupportedFormat(context, context.RGBA, context.RGBA, halfFloatTexType);
+          formatRG = getSupportedFormat(context, context.RGBA, context.RGBA, halfFloatTexType);
+          formatR = getSupportedFormat(context, context.RGBA, context.RGBA, halfFloatTexType);
+        }
+
+        return {
+          gl: context,
+          ext: {
+            formatRGBA,
+            formatRG,
+            formatR,
+            halfFloatTexType,
+            supportLinearFiltering
+          }
+        };
+      }
+
+      function getSupportedFormat(context, internalFormat, format, type) {
+        if (!supportRenderTextureFormat(context, internalFormat, format, type)) {
+          switch (internalFormat) {
+            case context.R16F:
+              return getSupportedFormat(context, context.RG16F, context.RG, type);
+            case context.RG16F:
+              return getSupportedFormat(context, context.RGBA16F, context.RGBA, type);
+            default:
+              return null;
+          }
+        }
+        return { internalFormat, format };
+      }
+
+      function supportRenderTextureFormat(context, internalFormat, format, type) {
+        const texture = context.createTexture();
+        context.bindTexture(context.TEXTURE_2D, texture);
+        context.texParameteri(context.TEXTURE_2D, context.TEXTURE_MIN_FILTER, context.NEAREST);
+        context.texParameteri(context.TEXTURE_2D, context.TEXTURE_MAG_FILTER, context.NEAREST);
+        context.texParameteri(context.TEXTURE_2D, context.TEXTURE_WRAP_S, context.CLAMP_TO_EDGE);
+        context.texParameteri(context.TEXTURE_2D, context.TEXTURE_WRAP_T, context.CLAMP_TO_EDGE);
+        context.texImage2D(context.TEXTURE_2D, 0, internalFormat, 4, 4, 0, format, type, null);
+        const fbo = context.createFramebuffer();
+        context.bindFramebuffer(context.FRAMEBUFFER, fbo);
+        context.framebufferTexture2D(context.FRAMEBUFFER, context.COLOR_ATTACHMENT0, context.TEXTURE_2D, texture, 0);
+        return context.checkFramebufferStatus(context.FRAMEBUFFER) === context.FRAMEBUFFER_COMPLETE;
+      }
+
+      function addKeywords(source, keywords) {
+        if (!keywords) return source;
+        let keywordsString = '';
+        keywords.forEach((keyword) => {
+          keywordsString += '#define ' + keyword + '\n';
+        });
+        return keywordsString + source;
+      }
+
+      function compileShader(type, source, keywords) {
+        source = addKeywords(source, keywords);
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          throw new Error(gl.getShaderInfoLog(shader) || 'Shader compile failed');
+        }
+        return shader;
+      }
+
+      function createProgram(vertexShader, fragmentShader) {
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          throw new Error(gl.getProgramInfoLog(program) || 'Program link failed');
+        }
+        return program;
+      }
+
+      function getUniforms(program) {
+        const uniforms = [];
+        const uniformCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+        for (let i = 0; i < uniformCount; i += 1) {
+          const uniformName = gl.getActiveUniform(program, i).name;
+          uniforms[uniformName] = gl.getUniformLocation(program, uniformName);
+        }
+        return uniforms;
+      }
+
+      class Material {
+        constructor(vertexShader, fragmentShaderSource) {
+          this.vertexShader = vertexShader;
+          this.fragmentShaderSource = fragmentShaderSource;
+          this.programs = [];
+          this.activeProgram = null;
+          this.uniforms = [];
+        }
+
+        setKeywords(keywords) {
+          let hash = 0;
+          for (let i = 0; i < keywords.length; i += 1) hash += hashCode(keywords[i]);
+          let program = this.programs[hash];
+          if (program == null) {
+            const fragmentShader = compileShader(gl.FRAGMENT_SHADER, this.fragmentShaderSource, keywords);
+            program = createProgram(this.vertexShader, fragmentShader);
+            this.programs[hash] = program;
+          }
+          if (program === this.activeProgram) return;
+          this.uniforms = getUniforms(program);
+          this.activeProgram = program;
+        }
+
+        bind() {
+          gl.useProgram(this.activeProgram);
+        }
+      }
+
+      class Program {
+        constructor(vertexShader, fragmentShader) {
+          this.uniforms = {};
+          this.program = createProgram(vertexShader, fragmentShader);
+          this.uniforms = getUniforms(this.program);
+        }
+
+        bind() {
+          gl.useProgram(this.program);
+        }
+      }
+
+      const baseVertexShader = compileShader(gl.VERTEX_SHADER, `
+        precision highp float;
+        attribute vec2 aPosition;
+        varying vec2 vUv;
+        varying vec2 vL;
+        varying vec2 vR;
+        varying vec2 vT;
+        varying vec2 vB;
+        uniform vec2 texelSize;
+
+        void main () {
+          vUv = aPosition * 0.5 + 0.5;
+          vL = vUv - vec2(texelSize.x, 0.0);
+          vR = vUv + vec2(texelSize.x, 0.0);
+          vT = vUv + vec2(0.0, texelSize.y);
+          vB = vUv - vec2(0.0, texelSize.y);
+          gl_Position = vec4(aPosition, 0.0, 1.0);
+        }
+      `);
+
+      const copyShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        uniform sampler2D uTexture;
+
+        void main () {
+          gl_FragColor = texture2D(uTexture, vUv);
+        }
+      `);
+
+      const clearShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        uniform sampler2D uTexture;
+        uniform float value;
+
+        void main () {
+          gl_FragColor = value * texture2D(uTexture, vUv);
+        }
+      `);
+
+      const displayShaderSource = `
+        precision highp float;
+        precision highp sampler2D;
+        varying vec2 vUv;
+        varying vec2 vL;
+        varying vec2 vR;
+        varying vec2 vT;
+        varying vec2 vB;
+        uniform sampler2D uTexture;
+        uniform vec2 texelSize;
+
+        void main () {
+          vec3 c = texture2D(uTexture, vUv).rgb;
+          #ifdef SHADING
+            vec3 lc = texture2D(uTexture, vL).rgb;
+            vec3 rc = texture2D(uTexture, vR).rgb;
+            vec3 tc = texture2D(uTexture, vT).rgb;
+            vec3 bc = texture2D(uTexture, vB).rgb;
+            float dx = length(rc) - length(lc);
+            float dy = length(tc) - length(bc);
+            vec3 n = normalize(vec3(dx, dy, length(texelSize)));
+            vec3 l = vec3(0.0, 0.0, 1.0);
+            float diffuse = clamp(dot(n, l) + 0.7, 0.7, 1.0);
+            c *= diffuse;
+          #endif
+          float a = max(c.r, max(c.g, c.b));
+          gl_FragColor = vec4(c, a);
+        }
+      `;
+
+      const splatShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float;
+        precision highp sampler2D;
+        varying vec2 vUv;
+        uniform sampler2D uTarget;
+        uniform float aspectRatio;
+        uniform vec3 color;
+        uniform vec2 point;
+        uniform float radius;
+
+        void main () {
+          vec2 p = vUv - point.xy;
+          p.x *= aspectRatio;
+          vec3 splat = exp(-dot(p, p) / radius) * color;
+          vec3 base = texture2D(uTarget, vUv).xyz;
+          gl_FragColor = vec4(base + splat, 1.0);
+        }
+      `);
+
+      const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float;
+        precision highp sampler2D;
+        varying vec2 vUv;
+        uniform sampler2D uVelocity;
+        uniform sampler2D uSource;
+        uniform vec2 texelSize;
+        uniform vec2 dyeTexelSize;
+        uniform float dt;
+        uniform float dissipation;
+
+        vec4 bilerp (sampler2D sam, vec2 uv, vec2 tsize) {
+          vec2 st = uv / tsize - 0.5;
+          vec2 iuv = floor(st);
+          vec2 fuv = fract(st);
+
+          vec4 a = texture2D(sam, (iuv + vec2(0.5, 0.5)) * tsize);
+          vec4 b = texture2D(sam, (iuv + vec2(1.5, 0.5)) * tsize);
+          vec4 c = texture2D(sam, (iuv + vec2(0.5, 1.5)) * tsize);
+          vec4 d = texture2D(sam, (iuv + vec2(1.5, 1.5)) * tsize);
+
+          return mix(mix(a, b, fuv.x), mix(c, d, fuv.x), fuv.y);
+        }
+
+        void main () {
+          #ifdef MANUAL_FILTERING
+            vec2 coord = vUv - dt * bilerp(uVelocity, vUv, texelSize).xy * texelSize;
+            vec4 result = bilerp(uSource, coord, dyeTexelSize);
+          #else
+            vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
+            vec4 result = texture2D(uSource, coord);
+          #endif
+          float decay = 1.0 + dissipation * dt;
+          gl_FragColor = result / decay;
+        }
+      `, ext.supportLinearFiltering ? null : ['MANUAL_FILTERING']);
+
+      const divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        varying highp vec2 vL;
+        varying highp vec2 vR;
+        varying highp vec2 vT;
+        varying highp vec2 vB;
+        uniform sampler2D uVelocity;
+
+        void main () {
+          float L = texture2D(uVelocity, vL).x;
+          float R = texture2D(uVelocity, vR).x;
+          float T = texture2D(uVelocity, vT).y;
+          float B = texture2D(uVelocity, vB).y;
+
+          vec2 C = texture2D(uVelocity, vUv).xy;
+          if (vL.x < 0.0) { L = -C.x; }
+          if (vR.x > 1.0) { R = -C.x; }
+          if (vT.y > 1.0) { T = -C.y; }
+          if (vB.y < 0.0) { B = -C.y; }
+
+          float div = 0.5 * (R - L + T - B);
+          gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+        }
+      `);
+
+      const curlShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        varying highp vec2 vL;
+        varying highp vec2 vR;
+        varying highp vec2 vT;
+        varying highp vec2 vB;
+        uniform sampler2D uVelocity;
+
+        void main () {
+          float L = texture2D(uVelocity, vL).y;
+          float R = texture2D(uVelocity, vR).y;
+          float T = texture2D(uVelocity, vT).x;
+          float B = texture2D(uVelocity, vB).x;
+          float vorticity = R - L - T + B;
+          gl_FragColor = vec4(0.5 * vorticity, 0.0, 0.0, 1.0);
+        }
+      `);
+
+      const vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision highp float;
+        precision highp sampler2D;
+        varying vec2 vUv;
+        varying vec2 vL;
+        varying vec2 vR;
+        varying vec2 vT;
+        varying vec2 vB;
+        uniform sampler2D uVelocity;
+        uniform sampler2D uCurl;
+        uniform float curl;
+        uniform float dt;
+
+        void main () {
+          float L = texture2D(uCurl, vL).x;
+          float R = texture2D(uCurl, vR).x;
+          float T = texture2D(uCurl, vT).x;
+          float B = texture2D(uCurl, vB).x;
+          float C = texture2D(uCurl, vUv).x;
+
+          vec2 force = 0.5 * vec2(abs(T) - abs(B), abs(R) - abs(L));
+          force /= length(force) + 0.0001;
+          force *= curl * C;
+          force.y *= -1.0;
+
+          vec2 velocity = texture2D(uVelocity, vUv).xy;
+          velocity += force * dt;
+          velocity = min(max(velocity, -1000.0), 1000.0);
+          gl_FragColor = vec4(velocity, 0.0, 1.0);
+        }
+      `);
+
+      const pressureShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        varying highp vec2 vL;
+        varying highp vec2 vR;
+        varying highp vec2 vT;
+        varying highp vec2 vB;
+        uniform sampler2D uPressure;
+        uniform sampler2D uDivergence;
+
+        void main () {
+          float L = texture2D(uPressure, vL).x;
+          float R = texture2D(uPressure, vR).x;
+          float T = texture2D(uPressure, vT).x;
+          float B = texture2D(uPressure, vB).x;
+          float divergence = texture2D(uDivergence, vUv).x;
+          float pressure = (L + R + B + T - divergence) * 0.25;
+          gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
+        }
+      `);
+
+      const gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
+        precision mediump float;
+        precision mediump sampler2D;
+        varying highp vec2 vUv;
+        varying highp vec2 vL;
+        varying highp vec2 vR;
+        varying highp vec2 vT;
+        varying highp vec2 vB;
+        uniform sampler2D uPressure;
+        uniform sampler2D uVelocity;
+
+        void main () {
+          float L = texture2D(uPressure, vL).x;
+          float R = texture2D(uPressure, vR).x;
+          float T = texture2D(uPressure, vT).x;
+          float B = texture2D(uPressure, vB).x;
+          vec2 velocity = texture2D(uVelocity, vUv).xy;
+          velocity.xy -= vec2(R - L, T - B);
+          gl_FragColor = vec4(velocity, 0.0, 1.0);
+        }
+      `);
+
+      const copyProgram = new Program(baseVertexShader, copyShader);
+      const clearProgram = new Program(baseVertexShader, clearShader);
+      const splatProgram = new Program(baseVertexShader, splatShader);
+      const advectionProgram = new Program(baseVertexShader, advectionShader);
+      const divergenceProgram = new Program(baseVertexShader, divergenceShader);
+      const curlProgram = new Program(baseVertexShader, curlShader);
+      const vorticityProgram = new Program(baseVertexShader, vorticityShader);
+      const pressureProgram = new Program(baseVertexShader, pressureShader);
+      const gradientSubtractProgram = new Program(baseVertexShader, gradientSubtractShader);
+      const displayMaterial = new Material(baseVertexShader, displayShaderSource);
+
+      const blit = (() => {
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]), gl.STATIC_DRAW);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([0, 1, 2, 0, 2, 3]), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(0);
+        return (target, clear = false) => {
+          if (target == null) {
+            gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+            gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+          } else {
+            gl.viewport(0, 0, target.width, target.height);
+            gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
+          }
+          if (clear) {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+          }
+          gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+        };
+      })();
+
+      let dye;
+      let velocity;
+      let divergence;
+      let curl;
+      let pressure;
+
+      function createFBO(w, h, internalFormat, format, type, param) {
+        gl.activeTexture(gl.TEXTURE0);
+        const texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, param);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, param);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, null);
+
+        const fbo = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        gl.viewport(0, 0, w, h);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        return {
+          texture,
+          fbo,
+          width: w,
+          height: h,
+          texelSizeX: 1 / w,
+          texelSizeY: 1 / h,
+          attach(id) {
+            gl.activeTexture(gl.TEXTURE0 + id);
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            return id;
+          }
+        };
+      }
+
+      function createDoubleFBO(w, h, internalFormat, format, type, param) {
+        let fbo1 = createFBO(w, h, internalFormat, format, type, param);
+        let fbo2 = createFBO(w, h, internalFormat, format, type, param);
+        return {
+          width: w,
+          height: h,
+          texelSizeX: fbo1.texelSizeX,
+          texelSizeY: fbo1.texelSizeY,
+          get read() { return fbo1; },
+          set read(value) { fbo1 = value; },
+          get write() { return fbo2; },
+          set write(value) { fbo2 = value; },
+          swap() {
+            const temp = fbo1;
+            fbo1 = fbo2;
+            fbo2 = temp;
+          }
+        };
+      }
+
+      function resizeFBO(target, w, h, internalFormat, format, type, param) {
+        const newFBO = createFBO(w, h, internalFormat, format, type, param);
+        copyProgram.bind();
+        gl.uniform1i(copyProgram.uniforms.uTexture, target.attach(0));
+        blit(newFBO);
+        return newFBO;
+      }
+
+      function resizeDoubleFBO(target, w, h, internalFormat, format, type, param) {
+        if (target.width === w && target.height === h) return target;
+        target.read = resizeFBO(target.read, w, h, internalFormat, format, type, param);
+        target.write = createFBO(w, h, internalFormat, format, type, param);
+        target.width = w;
+        target.height = h;
+        target.texelSizeX = 1 / w;
+        target.texelSizeY = 1 / h;
+        return target;
+      }
+
+      function getResolution(resolution) {
+        let aspectRatio = gl.drawingBufferWidth / gl.drawingBufferHeight;
+        if (aspectRatio < 1) aspectRatio = 1 / aspectRatio;
+        const min = Math.round(resolution);
+        const max = Math.round(resolution * aspectRatio);
+        if (gl.drawingBufferWidth > gl.drawingBufferHeight) return { width: max, height: min };
+        return { width: min, height: max };
+      }
+
+      function scaleByPixelRatio(input) {
+        const pixelRatio = window.devicePixelRatio || 1;
+        return Math.floor(input * pixelRatio);
+      }
+
+      function hashCode(value) {
+        if (value.length === 0) return 0;
+        let hash = 0;
+        for (let i = 0; i < value.length; i += 1) {
+          hash = (hash << 5) - hash + value.charCodeAt(i);
+          hash |= 0;
+        }
+        return hash;
+      }
+
+      function HSVtoRGB(h, s, v) {
+        let r;
+        let g;
+        let b;
+        const i = Math.floor(h * 6);
+        const f = h * 6 - i;
+        const p = v * (1 - s);
+        const q = v * (1 - f * s);
+        const t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+          case 0: r = v; g = t; b = p; break;
+          case 1: r = q; g = v; b = p; break;
+          case 2: r = p; g = v; b = t; break;
+          case 3: r = p; g = q; b = v; break;
+          case 4: r = t; g = p; b = v; break;
+          default: r = v; g = p; b = q; break;
+        }
+        return { r, g, b };
+      }
+
+      function generateColor() {
+        const color = HSVtoRGB(Math.random(), 1, 1);
+        color.r *= 0.15;
+        color.g *= 0.15;
+        color.b *= 0.15;
+        return color;
+      }
+
+      function wrap(value, min, max) {
+        const range = max - min;
+        if (range === 0) return min;
+        return ((value - min) % range) + min;
+      }
+
+      function correctDeltaX(delta) {
+        const aspectRatio = canvas.width / canvas.height;
+        if (aspectRatio < 1) delta *= aspectRatio;
+        return delta;
+      }
+
+      function correctDeltaY(delta) {
+        const aspectRatio = canvas.width / canvas.height;
+        if (aspectRatio > 1) delta /= aspectRatio;
+        return delta;
+      }
+
+      function correctRadius(radius) {
+        const aspectRatio = canvas.width / canvas.height;
+        if (aspectRatio > 1) return radius * aspectRatio;
+        return radius;
+      }
+
+      function resizeCanvas() {
+        const width = scaleByPixelRatio(canvas.clientWidth);
+        const height = scaleByPixelRatio(canvas.clientHeight);
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          return true;
+        }
+        return false;
+      }
+
+      function updateKeywords() {
+        const displayKeywords = [];
+        if (config.SHADING) displayKeywords.push('SHADING');
+        displayMaterial.setKeywords(displayKeywords);
+      }
+
+      function initFramebuffers() {
+        const simRes = getResolution(config.SIM_RESOLUTION);
+        const dyeRes = getResolution(config.DYE_RESOLUTION);
+        const texType = ext.halfFloatTexType;
+        const rgba = ext.formatRGBA;
+        const rg = ext.formatRG;
+        const r = ext.formatR;
+        const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
+        gl.disable(gl.BLEND);
+
+        if (!dye) dye = createDoubleFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+        else dye = resizeDoubleFBO(dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+
+        if (!velocity) velocity = createDoubleFBO(simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
+        else velocity = resizeDoubleFBO(velocity, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
+
+        divergence = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
+        curl = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
+        pressure = createDoubleFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
+      }
+
+      function updatePointerDownData(pointer, id, posX, posY) {
+        pointer.id = id;
+        pointer.down = true;
+        pointer.moved = false;
+        pointer.texcoordX = posX / canvas.width;
+        pointer.texcoordY = 1 - posY / canvas.height;
+        pointer.prevTexcoordX = pointer.texcoordX;
+        pointer.prevTexcoordY = pointer.texcoordY;
+        pointer.deltaX = 0;
+        pointer.deltaY = 0;
+        pointer.color = generateColor();
+      }
+
+      function updatePointerMoveData(pointer, posX, posY, color) {
+        pointer.prevTexcoordX = pointer.texcoordX;
+        pointer.prevTexcoordY = pointer.texcoordY;
+        pointer.texcoordX = posX / canvas.width;
+        pointer.texcoordY = 1 - posY / canvas.height;
+        pointer.deltaX = correctDeltaX(pointer.texcoordX - pointer.prevTexcoordX);
+        pointer.deltaY = correctDeltaY(pointer.texcoordY - pointer.prevTexcoordY);
+        pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0;
+        pointer.color = color;
+      }
+
+      function updatePointerUpData(pointer) {
+        pointer.down = false;
+      }
+
+      function splat(x, y, dx, dy, color) {
+        splatProgram.bind();
+        gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
+        gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+        gl.uniform2f(splatProgram.uniforms.point, x, y);
+        gl.uniform3f(splatProgram.uniforms.color, dx, dy, 0.0);
+        gl.uniform1f(splatProgram.uniforms.radius, correctRadius(config.SPLAT_RADIUS / 100.0));
+        blit(velocity.write);
+        velocity.swap();
+
+        gl.uniform1i(splatProgram.uniforms.uTarget, dye.read.attach(0));
+        gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
+        blit(dye.write);
+        dye.swap();
+      }
+
+      function splatPointer(pointer) {
+        const dx = pointer.deltaX * config.SPLAT_FORCE;
+        const dy = pointer.deltaY * config.SPLAT_FORCE;
+        splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
+      }
+
+      function clickSplat(pointer) {
+        const color = generateColor();
+        color.r *= 10.0;
+        color.g *= 10.0;
+        color.b *= 10.0;
+        const dx = 10 * (Math.random() - 0.5);
+        const dy = 30 * (Math.random() - 0.5);
+        splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
+      }
+
+      function applyInputs() {
+        pointers.forEach((pointer) => {
+          if (pointer.moved) {
+            pointer.moved = false;
+            splatPointer(pointer);
+          }
+        });
+      }
+
+      let lastUpdateTime = Date.now();
+      let colorUpdateTimer = 0.0;
+
+      function calcDeltaTime() {
+        const now = Date.now();
+        let dt = (now - lastUpdateTime) / 1000;
+        dt = Math.min(dt, 0.016666);
+        lastUpdateTime = now;
+        return dt;
+      }
+
+      function updateColors(dt) {
+        colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED;
+        if (colorUpdateTimer >= 1) {
+          colorUpdateTimer = wrap(colorUpdateTimer, 0, 1);
+          pointers.forEach((pointer) => {
+            pointer.color = generateColor();
+          });
+        }
+      }
+
+      function step(dt) {
+        gl.disable(gl.BLEND);
+
+        curlProgram.bind();
+        gl.uniform2f(curlProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        gl.uniform1i(curlProgram.uniforms.uVelocity, velocity.read.attach(0));
+        blit(curl);
+
+        vorticityProgram.bind();
+        gl.uniform2f(vorticityProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        gl.uniform1i(vorticityProgram.uniforms.uVelocity, velocity.read.attach(0));
+        gl.uniform1i(vorticityProgram.uniforms.uCurl, curl.attach(1));
+        gl.uniform1f(vorticityProgram.uniforms.curl, config.CURL);
+        gl.uniform1f(vorticityProgram.uniforms.dt, dt);
+        blit(velocity.write);
+        velocity.swap();
+
+        divergenceProgram.bind();
+        gl.uniform2f(divergenceProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        gl.uniform1i(divergenceProgram.uniforms.uVelocity, velocity.read.attach(0));
+        blit(divergence);
+
+        clearProgram.bind();
+        gl.uniform1i(clearProgram.uniforms.uTexture, pressure.read.attach(0));
+        gl.uniform1f(clearProgram.uniforms.value, config.PRESSURE);
+        blit(pressure.write);
+        pressure.swap();
+
+        pressureProgram.bind();
+        gl.uniform2f(pressureProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        gl.uniform1i(pressureProgram.uniforms.uDivergence, divergence.attach(0));
+        for (let i = 0; i < config.PRESSURE_ITERATIONS; i += 1) {
+          gl.uniform1i(pressureProgram.uniforms.uPressure, pressure.read.attach(1));
+          blit(pressure.write);
+          pressure.swap();
+        }
+
+        gradientSubtractProgram.bind();
+        gl.uniform2f(gradientSubtractProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        gl.uniform1i(gradientSubtractProgram.uniforms.uPressure, pressure.read.attach(0));
+        gl.uniform1i(gradientSubtractProgram.uniforms.uVelocity, velocity.read.attach(1));
+        blit(velocity.write);
+        velocity.swap();
+
+        advectionProgram.bind();
+        gl.uniform2f(advectionProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
+        if (!ext.supportLinearFiltering) {
+          gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, velocity.texelSizeX, velocity.texelSizeY);
+        }
+        const velocityId = velocity.read.attach(0);
+        gl.uniform1i(advectionProgram.uniforms.uVelocity, velocityId);
+        gl.uniform1i(advectionProgram.uniforms.uSource, velocityId);
+        gl.uniform1f(advectionProgram.uniforms.dt, dt);
+        gl.uniform1f(advectionProgram.uniforms.dissipation, config.VELOCITY_DISSIPATION);
+        blit(velocity.write);
+        velocity.swap();
+
+        if (!ext.supportLinearFiltering) {
+          gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, dye.texelSizeX, dye.texelSizeY);
+        }
+        gl.uniform1i(advectionProgram.uniforms.uVelocity, velocity.read.attach(0));
+        gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1));
+        gl.uniform1f(advectionProgram.uniforms.dissipation, config.DENSITY_DISSIPATION);
+        blit(dye.write);
+        dye.swap();
+      }
+
+      function drawDisplay(target) {
+        const width = target == null ? gl.drawingBufferWidth : target.width;
+        const height = target == null ? gl.drawingBufferHeight : target.height;
+        displayMaterial.bind();
+        if (config.SHADING) {
+          gl.uniform2f(displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height);
+        }
+        gl.uniform1i(displayMaterial.uniforms.uTexture, dye.read.attach(0));
+        blit(target);
+      }
+
+      function render(target) {
+        gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+        gl.enable(gl.BLEND);
+        drawDisplay(target);
+      }
+
+      function updateFrame() {
+        if (!isActive) return;
+        const dt = calcDeltaTime();
+        if (resizeCanvas()) initFramebuffers();
+        updateColors(dt);
+        applyInputs();
+        step(dt);
+        render(null);
+        animationFrameId = requestAnimationFrame(updateFrame);
+      }
+
+      updateKeywords();
+      resizeCanvas();
+      initFramebuffers();
+
+      function handleMouseDown(event) {
+        const pointer = pointers[0];
+        const posX = scaleByPixelRatio(event.clientX);
+        const posY = scaleByPixelRatio(event.clientY);
+        updatePointerDownData(pointer, -1, posX, posY);
+        clickSplat(pointer);
+      }
+
+      let firstMouseMoveHandled = false;
+      function handleMouseMove(event) {
+        const pointer = pointers[0];
+        const posX = scaleByPixelRatio(event.clientX);
+        const posY = scaleByPixelRatio(event.clientY);
+        if (!firstMouseMoveHandled) {
+          updatePointerMoveData(pointer, posX, posY, generateColor());
+          firstMouseMoveHandled = true;
+        } else {
+          updatePointerMoveData(pointer, posX, posY, pointer.color);
+        }
+      }
+
+      function handleTouchStart(event) {
+        const touches = event.targetTouches;
+        const pointer = pointers[0];
+        for (let i = 0; i < touches.length; i += 1) {
+          const posX = scaleByPixelRatio(touches[i].clientX);
+          const posY = scaleByPixelRatio(touches[i].clientY);
+          updatePointerDownData(pointer, touches[i].identifier, posX, posY);
+        }
+      }
+
+      function handleTouchMove(event) {
+        const touches = event.targetTouches;
+        const pointer = pointers[0];
+        for (let i = 0; i < touches.length; i += 1) {
+          const posX = scaleByPixelRatio(touches[i].clientX);
+          const posY = scaleByPixelRatio(touches[i].clientY);
+          updatePointerMoveData(pointer, posX, posY, pointer.color);
+        }
+      }
+
+      function handleTouchEnd(event) {
+        const touches = event.changedTouches;
+        const pointer = pointers[0];
+        for (let i = 0; i < touches.length; i += 1) {
+          updatePointerUpData(pointer);
+        }
+      }
+
+      window.addEventListener('mousedown', handleMouseDown);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
+      window.addEventListener('touchend', handleTouchEnd);
+
+      updateFrame();
+
+      return () => {
+        isActive = false;
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        window.removeEventListener('mousedown', handleMouseDown);
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('touchstart', handleTouchStart);
+        window.removeEventListener('touchmove', handleTouchMove);
+        window.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initSplashCursor();
+
+      const typewriterText = ['Backend Developer', 'AI Systems Builder', 'Algorithmic Trader', 'Fintech Enthusiast'];
+      const typewriterEl = document.getElementById('typewriter');
+      let wordIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function tickTypewriter() {
+        const currentWord = typewriterText[wordIndex];
+        if (!deleting) {
+          typewriterEl.textContent = currentWord.slice(0, charIndex + 1);
+          charIndex += 1;
+          if (charIndex === currentWord.length) {
+            deleting = true;
+            setTimeout(tickTypewriter, 1800);
+            return;
+          }
+          setTimeout(tickTypewriter, 80);
+          return;
+        }
+
+        typewriterEl.textContent = currentWord.slice(0, charIndex - 1);
+        charIndex -= 1;
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % typewriterText.length;
+          setTimeout(tickTypewriter, 300);
+          return;
+        }
+        setTimeout(tickTypewriter, 40);
+      }
+
+      tickTypewriter();
+
+      window.addEventListener('scroll', () => {
+        const scrollable = document.body.scrollHeight - window.innerHeight;
+        const scrolled = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        document.getElementById('scroll-progress').style.width = scrolled + '%';
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.16 });
+
+      document.querySelectorAll('.section-reveal').forEach((section) => {
+        if (!section.classList.contains('visible')) {
+          revealObserver.observe(section);
+        }
+      });
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            document.querySelectorAll('.nav-links a, .mobile-links a').forEach((link) => {
+              link.classList.toggle('active', link.dataset.section === id);
+            });
+          }
+        });
+      }, { threshold: 0.45, rootMargin: '-20% 0px -35% 0px' });
+
+      document.querySelectorAll('main section[id]').forEach((section) => {
+        if (section.id !== 'hero') {
+          navObserver.observe(section);
+        }
+      });
+
+      document.querySelectorAll('.project-card').forEach((card) => {
+        const button = card.querySelector('.expand-toggle');
+        const content = card.querySelector('.expanded-content');
+        button.addEventListener('click', () => {
+          const expanded = card.dataset.expanded === 'true';
+          card.dataset.expanded = String(!expanded);
+          content.style.maxHeight = expanded ? '0' : '1000px';
+          button.textContent = expanded ? 'Click to expand ↓' : 'Click to collapse ↑';
+        });
+      });
+
+      const backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('show', window.scrollY > 300);
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuClose = document.querySelector('.mobile-close');
+      const closeMenu = () => mobileMenu.classList.remove('open');
+      menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+      menuClose.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-links a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const response = await fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            document.getElementById('success-message').style.display = 'block';
+            this.reset();
+            btn.textContent = 'Message Sent ✓';
+          } else {
+            btn.textContent = 'Send Message ↗';
+            btn.disabled = false;
+            alert('Something went wrong. Please email me directly at srivardhanneela@gmail.com');
+          }
+        } catch(err) {
+          btn.textContent = 'Send Message ↗';
+          btn.disabled = false;
+          alert('Network error. Please email me directly.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
