@@ -358,6 +358,10 @@
       .menu-toggle { display: inline-flex; }
       .stats-grid, .coding-grid, .repo-grid, .cert-grid, .about-grid, .contact-grid, .building-banner { grid-template-columns: 1fr 1fr; }
     }
+    @media (min-width: 769px) {
+      .repo-card[style*="display:none"] { display: grid !important; }
+      .view-more-repos { display: none !important; }
+    }
     @media (max-width: 768px) {
       * { cursor: auto !important; }
       #splash-cursor { display: none; }
@@ -619,9 +623,9 @@
         <article class="repo-card"><h4>🤖 AMSS-v5</h4><p>Multi-strategy algo trading engine for BTC/USD Perpetuals</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
         <article class="repo-card"><h4>🧠 Adaptive-Exam-System</h4><p>AI-powered dynamic assessment with difficulty-weighted scoring</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
         <article class="repo-card"><h4>😂 MemeBot</h4><p>AI content automation pipeline using Gemini AI and Vertex AI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card"><h4>📊 Trading-Indicators</h4><p>Custom EMA and volatility indicators library</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card"><h4>🔗 FastAPI-Projects</h4><p>REST API backends built with FastAPI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
-        <article class="repo-card"><h4>💡 DSA-Solutions</h4><p>200+ DSA solutions with clean implementations</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card" style="display:none;"><h4>📊 Trading-Indicators</h4><p>Custom EMA and volatility indicators library</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card" style="display:none;"><h4>🔗 FastAPI-Projects</h4><p>REST API backends built with FastAPI</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
+        <article class="repo-card" style="display:none;"><h4>💡 DSA-Solutions</h4><p>200+ DSA solutions with clean implementations</p><div class="repo-language"><span class="lang-dot"></span>Python</div></article>
       </div>
       <a class="view-more-repos" href="https://github.com/Srivardhan0615" target="_blank" rel="noreferrer">View More on GitHub</a>
     </section>
